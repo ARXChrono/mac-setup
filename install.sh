@@ -4,11 +4,11 @@ echo -e "\033[1;31m Configuring Shaun's Mac Setup 🚚"
 
 # TODO: Mac configurations - touchpad, keybord, dock etc.
 
-# install xcode & homebrew
+# Install xcode & homebrew
 xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# console & zsh
+# Console & zsh
 
 brew install tree
 brew install fzf
@@ -21,7 +21,7 @@ brew cask install iterm2
 
 # TODO: configure/import zsh settings, theme, alias etc
 
-# dev stuff
+# Dev stuff
 
 brew install git
 brew install hub
@@ -30,7 +30,6 @@ brew install gist
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 brew install yarn --ignore-dependencies
 yarn config set workspaces-experimental true
-
 
 # Install Apps
 brew cask install iterm2
@@ -48,7 +47,6 @@ brew cask install notion
 
 code --install-extension monokai.theme-monokai-pro-vscode
 code --install-extension pkief.material-icon-theme
-
 code --install-extension mgmcdermott.vscode-language-babel
 code --install-extension apollographql.vscode-apollo
 code --install-extension Prisma.vscode-graphql
@@ -72,7 +70,6 @@ code --install-extension jpoissonnier.vscode-styled-components
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension wix.vscode-import-cost
 
-
 # TODO: find automation for github ssh setup, will have to do below manually for now.
 # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 # eval "$(ssh-agent -s)"
@@ -80,4 +77,4 @@ code --install-extension wix.vscode-import-cost
 # git config --global user.name "ARXChrono" 
 # git config --global user.email "email@example.com"
 
-echo "\033[32m Done ✨"
+echo -e "\033[32m Done ✨"
