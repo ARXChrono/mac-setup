@@ -46,11 +46,9 @@ brew cask install notion
 
 # TODO: vscode plugins, themes, and import config
 
-# TO DO 
-# find automation for github ssh setup, will have to do below manually for now.
+# TODO: find automation for github ssh setup, will have to do below manually for now.
 # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 # eval "$(ssh-agent -s)"
 # pbcopy < ~/.ssh/id_rsa.pub
-
 
 echo "Done ✨"

@@ -1,11 +1,11 @@
-# mac-setup
+# 👨‍💻 Shaun's Mac Setup
 
-## Intro
+## 👋 Intro
 
-👋 Welcome, this will hopefully automate majority of my mac setup when getting started on a fresh OS, Will continue adding more configurations over time.
+Hopefully automate majority of my mac setup when getting started on a fresh OS. I will continue adding more configurations over time! This is a good start right now.
 
-## Lets go
+## 🚀 Lets go
 
 ```sh
-bash install.sh
+bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/install.sh)
 ```
