@@ -84,8 +84,10 @@ echo "Finder: show path bar"
 defaults write com.apple.finder ShowPathbar -bool true
 
 # Dock
-echo "Wipe all (default) app icons from the Dock"
-defaults write com.apple.dock persistent-apps -array
+
+# run on clean os setup
+# echo "Wipe all (default) app icons from the Dock"
+# defaults write com.apple.dock persistent-apps -array
 
 echo "Setting the icon size of Dock items to 36 pixels for optimal size/screen-realestate"
 defaults write com.apple.dock tilesize -int 36
