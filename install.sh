@@ -181,7 +181,7 @@ brew cask install google-chrome
 # VSCode todo: export config
 
 ## Theme
-echo "nstalling vscode plugins"
+echo "Installing vscode plugins"
 
 code --install-extension monokai.theme-monokai-pro-vscode
 code --install-extension pkief.material-icon-theme
