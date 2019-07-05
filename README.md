@@ -1,6 +1,6 @@
 # 👨‍💻 Shaun's Mac Setup
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/ARXChrono/mac-setup) ![GitHub issues](https://img.shields.io/github/issues-raw/arxchrono/mac-setup.svg) ![GitHub pull requests](https://img.shields.io/github/issues-pr/arxchrono/mac-setup.svg) ![Twitter Follow](https://img.shields.io/twitter/follow/devshaun.svg?style=social)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg) ![GitHub issues](https://img.shields.io/github/issues-raw/arxchrono/mac-setup.svg) ![GitHub pull requests](https://img.shields.io/github/issues-pr/arxchrono/mac-setup.svg) [![Twitter Follow](https://img.shields.io/twitter/follow/devshaun.svg?style=social)](https://twitter.com/devshaun)
 
 
 ## 👋 Welcome
