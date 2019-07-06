@@ -11,6 +11,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 echo "source ${(q-)PWD}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo "✅ add gs alias"
-echo "alias gs ='git status'" >> ${ZDOTDIR:-$HOME}/.zshrc
+echo "alias gs='git status'" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo -e "\033[32m✅ zsh configured completed"

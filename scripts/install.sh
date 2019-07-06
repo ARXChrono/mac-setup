@@ -72,13 +72,14 @@ brew cask install google-chrome
 ## Theme
 echo "✅ Installing vscode themes and plugins"
 code --install-extension monokai.theme-monokai-pro-vscode
+code --install-extension alexanderte.dainty-vscode
+code --install-extension dracula-theme.theme-dracula
 code --install-extension pkief.material-icon-theme
 
 ## Extensions
-code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension alefragnani.project-manager
+code --install-extension aliariff.auto-add-brackets
 code --install-extension apollographql.vscode-apollo
-code --install-extension Prisma.vscode-graphql
-code --install-extension kumar-harsh.graphql-for-vscode
 code --install-extension burkeholland.react-food-truck
 code --install-extension burkeholland.simple-react-snippets
 code --install-extension capaj.vscode-exports-autocomplete
@@ -94,9 +95,11 @@ code --install-extension esbenp.prettier-vscode
 code --install-extension formulahendry.auto-close-tag
 code --install-extension formulahendry.auto-rename-tag
 code --install-extension jpoissonnier.vscode-styled-components
+code --install-extension kumar-harsh.graphql-for-vscode
+code --install-extension mgmcdermott.vscode-language-babel
+code --install-extension Prisma.vscode-graphql
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension wix.vscode-import-cost
-code --install-extension alefragnani.project-manager
 
 # TODO: find automation for github ssh setup, will have to do below manually for now.
 # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
