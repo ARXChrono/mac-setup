@@ -20,6 +20,9 @@ brew install bash-completion
 curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
 sh install.sh --unattended
 brew cask install iterm2
+# try configure zsh with antigen
+brew install antigen
+bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/scripts/config/zsh.sh)
 
 # TODO: configure/import zsh settings, theme, alias etc
 # Dev stuff
