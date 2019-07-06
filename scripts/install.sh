@@ -17,12 +17,13 @@ brew install tree
 brew install fzf
 brew install ack
 brew install bash-completion
-curl -Lo install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-sh install.sh --unattended
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 brew cask install iterm2
 # configure zsh with antigen
 brew install antigen
 bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/configs/zsh.sh)
+# configure iterm fonts, will need to open iterm2 and add my custom colors for now.
+brew tap caskroom/fonts && brew cask install font-source-code-pro && brew cask install font-ibm-plex 
 
 # TODO: configure/import zsh settings, theme, alias etc
 # Dev stuff
@@ -80,7 +81,6 @@ code --install-extension CoenraadS.bracket-pair-colorizer
 code --install-extension dbaeumer.vscode-eslint
 code --install-extension dsznajder.es7-react-js-snippets
 code --install-extension eamodio.gitlens
-code --install-extension dzannotti.vscode-babel-coloring
 code --install-extension eg2.vscode-npm-script
 code --install-extension eriklynd.json-tools
 code --install-extension esbenp.prettier-vscode

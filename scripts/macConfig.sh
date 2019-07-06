@@ -106,7 +106,6 @@ defaults write com.apple.dock no-glass -boolean YES
 # echo "✅ Pinning the Dock to the left side of the screen for most efficient use of screen realestate"
 # defaults write com.apple.dock pinning -string "end"
 
-
 # Safari & WebKit                                                             
 echo "✅ Disabling Safari’s thumbnail cache for History and Top Sites"
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
