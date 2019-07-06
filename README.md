@@ -10,5 +10,5 @@ The goal is to automate majority of my initial mac setup when getting started on
 ## 🚀 Lets go
 
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/setup.sh)
 ```
