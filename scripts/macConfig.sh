@@ -9,6 +9,8 @@ sudo -v
 
 # General UI/UX
 
+echo -e "\033[32m 👨‍💻Configuring Mac Preferences"
+
 echo "Disabling the 'Are you sure you want to open this application from the Internet?' dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 

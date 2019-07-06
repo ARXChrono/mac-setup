@@ -16,3 +16,5 @@ antigen theme robbyrussell
 
 # Tell Antigen that you're done.
 antigen apply
+
+echo -e "\033[32m ✅ zsh configured completed"
