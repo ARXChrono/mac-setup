@@ -1,22 +1,16 @@
 #!/bin/sh
 
-source ~/antigen.zsh
+echo "🛠 Configuring zshrc"
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+echo "✅ add zsh-syntax-highlighting"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+echo "source ${(q-)PWD}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
+echo "✅ add zsh-autosuggestions"
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+echo "source ${(q-)PWD}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# Load the theme.
-antigen theme robbyrussell
-
-# Tell Antigen that you're done.
-antigen apply
+echo "✅ add gs alias"
+echo "alias gs ='git status'" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo -e "\033[32m✅ zsh configured completed"
-
-# Edit this one doesn't seem to work right when imported but works when running directly.

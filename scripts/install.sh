@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 🏠 Home sweet home
+cd ~ 
+
 # Install xcode
 echo "✅ Installing xcode and homebrew"
 xcode-select --install
@@ -12,21 +15,22 @@ else
 fi
 
 # Console & zsh & iterm config
-echo "✅ Installing zsh, setting default shell, iterm2"
+echo "✅ Installing utils tree, fzf, bash completion"
 brew install tree
 brew install fzf
 brew install ack
 brew install bash-completion
+
+echo "✅ Installing zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/configs/zsh.sh) 
+
+echo "✅ Installing iterm2"
 brew cask install iterm2
-# configure zsh with antigen
-brew install antigen
-bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/configs/zsh.sh)
 # configure iterm fonts, will need to open iterm2 and add my custom colors for now.
 brew tap caskroom/fonts && brew cask install font-source-code-pro && brew cask install font-ibm-plex 
 
-# TODO: configure/import zsh settings, theme, alias etc
-# Dev stuff
+# Dev 
 echo "✅ Installing git, hub, node, gist, yarn"
 brew install git
 brew install hub
