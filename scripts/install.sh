@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install xcode
-echo "Installing xcode and homebrew"
+echo "✅ Installing xcode and homebrew"
 xcode-select --install
 # Install or update homebrew
 which -s brew
@@ -12,7 +12,7 @@ else
 fi
 
 # Console & zsh & iterm config
-echo "Installing zsh, setting default shell, iterm2"
+echo "✅ Installing zsh, setting default shell, iterm2"
 brew install tree
 brew install fzf
 brew install ack
@@ -26,7 +26,7 @@ bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/conf
 
 # TODO: configure/import zsh settings, theme, alias etc
 # Dev stuff
-echo "Installing git, hub, node, gist, yarn"
+echo "✅ Installing git, hub, node, gist, yarn"
 brew install git
 brew install hub
 brew install node
@@ -36,7 +36,7 @@ brew install yarn --ignore-dependencies
 yarn config set workspaces-experimental true
 
 # Install Apps
-echo "Installing apps"
+echo "✅ Installing apps"
 brew cask install istat-menus
 brew cask install karabiner-elements
 brew cask install spectacle
@@ -62,7 +62,7 @@ brew cask install google-chrome
 # VSCode todo: export config
 
 ## Theme
-echo "Installing vscode themes and plugins"
+echo "✅ Installing vscode themes and plugins"
 code --install-extension monokai.theme-monokai-pro-vscode
 code --install-extension pkief.material-icon-theme
 
