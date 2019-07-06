@@ -45,6 +45,9 @@ brew cask install angry-ip-scanner
 brew cask install visual-studio-code
 brew cask install slack 
 brew cask install notion
+brew cask install clipy
+brew cask install figma
+brew cask install postman
 
 #actually this one doesn't work yet - manually add this.
 # brew cask install tweetdeck 
