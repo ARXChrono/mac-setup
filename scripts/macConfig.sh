@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 
-# ---
+###############################################################################
 # Mac configurations
-# ---
+###############################################################################
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
 
+###############################################################################
 # General UI/UX
+###############################################################################
+
 echo "---"
 echo -e "\033[32m👨‍💻 Configuring Mac Preferences"
 echo "---"
+
 echo "✅ Disabling the 'Are you sure you want to open this application from the Internet?' dialog"
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
@@ -26,7 +34,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 echo "✅ Disabling smart dashes as they’re annoying when typing code"
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input 
+###############################################################################
 
 echo "✅ Enabling tap to click for this user and for the login screen"
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -53,7 +63,7 @@ defaults write -g com.apple.trackpad.scaling 2
 defaults write -g com.apple.mouse.scaling 2.5
 
 # Trackpad
-
+echo "✅ Set Trackpad Threshold to firm click"
 # Haptic feedback
 # 0: Light
 # 1: Medium
@@ -61,7 +71,10 @@ defaults write -g com.apple.mouse.scaling 2.5
 defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 2
 defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 2
 
+###############################################################################
 # Finder
+###############################################################################
+
 echo "✅ Automatically open a new Finder window when a volume is mounted"
 defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
@@ -82,7 +95,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 echo "✅ Finder: show path bar"
 defaults write com.apple.finder ShowPathbar -bool true
 
+###############################################################################
 # Dock
+###############################################################################
 
 # run on clean os setup
 # echo "✅ Wipe all (default) app icons from the Dock"
@@ -106,7 +121,10 @@ defaults write com.apple.dock no-glass -boolean YES
 # echo "✅ Pinning the Dock to the left side of the screen for most efficient use of screen realestate"
 # defaults write com.apple.dock pinning -string "end"
 
-# Safari & WebKit                                                             
+###############################################################################
+# Safari & WebKit  
+###############################################################################
+
 echo "✅ Disabling Safari’s thumbnail cache for History and Top Sites"
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
@@ -126,3 +144,42 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 
 echo "✅ Adding a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+###############################################################################
+# Mac App Store                                                              
+###############################################################################
+
+echo "✅ Enable the WebKit Developer Tools in the Mac App Store"
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+echo "✅ Enable Debug Menu in the Mac App Store"
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+echo "✅ Enable the automatic update check"
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+echo "✅ Check for software updates daily, not just once per week"
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+echo "✅ Download newly available updates in background"
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+echo "✅ Install System data files & security updates"
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+echo "✅ Automatically download apps purchased on other Macs"
+defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
+
+echo "✅ Turn on app auto-update"
+defaults write com.apple.commerce AutoUpdate -bool true
+
+echo "✅ Allow the App Store to reboot machine on macOS updates"
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+

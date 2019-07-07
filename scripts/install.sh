@@ -31,7 +31,7 @@ brew cask install iterm2
 brew tap caskroom/fonts && brew cask install font-source-code-pro && brew cask install font-ibm-plex 
 
 # Dev 
-echo "✅ Installing git, hub, node, gist, yarn"
+echo "✅ Installing git, hub, node, nvm, gist, yarn"
 brew install git
 brew install hub
 brew install node
