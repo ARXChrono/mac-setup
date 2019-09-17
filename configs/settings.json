@@ -8,7 +8,6 @@
   "editor.fontSize": 14,
   "workbench.colorCustomizations": {
     "editor.background": "#111",
-    "sideBar.background": "#111",
     "editorGutter.background": "#111",
     "terminal.background": "#111",
     "activityBar.background": "#000",
@@ -49,5 +48,10 @@
     "typescriptreact",
     "yaml",
     "yml"
-  ]
+  ],
+  "vscode_custom_css.imports": ["file:///Users/{replaceUser}/vs.css"],
+  "vscode_custom_css.policy": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
