@@ -14,7 +14,7 @@ echo "✅ add zsh config alias"
 echo 'alias zshconfig="code ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo "✅ add git alias"
-echo "alias gs='git status'" >> ${ZDOTDIR:-$HOME}/.zshrc
+echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo "✅ add yarn alias"
 echo 'alias ys="yarn start"' >> ${ZDOTDIR:-$HOME}/.zshrc

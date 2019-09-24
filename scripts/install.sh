@@ -42,24 +42,26 @@ yarn config set workspaces-experimental true
 
 # Install Apps
 echo "✅ Installing apps"
-brew cask install istat-menus
 brew cask install karabiner-elements
 brew cask install spectacle
 brew cask install angry-ip-scanner
+brew cask install sourcetree
 brew cask install visual-studio-code
 brew cask install slack 
 brew cask install notion
 brew cask install clipy
 brew cask install figma
+brew cask install ngrok
 brew cask install postman
+brew tap devhubapp/devhub
+brew cask install devhub
 
-#actually this one doesn't work yet - manually add this.
+# actually this one doesn't work yet - manually add this.
 # brew cask install tweetdeck 
 
 # Media 
 brew cask install spotify
-brew cask install spotify-notifications
-brew cask install statusfy
+brew cask install spotmenu
 brew cask install vlc
 brew cask install handbrake
 
