@@ -20,6 +20,7 @@ brew install tree
 brew install fzf
 brew install ack
 brew install bash-completion
+brew install ncdu
 
 echo "✅ Installing zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -103,7 +104,6 @@ code --install-extension Prisma.vscode-graphql
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension wix.vscode-import-cost
 code --install-extension lunarlimbo.banner-comments-plus
-code --install-extension idered.figma
 
 # TODO: find automation for github ssh setup, will have to do below manually for now.
 # ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
