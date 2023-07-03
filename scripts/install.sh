@@ -3,8 +3,10 @@
 # 🏠 Home sweet home
 cd ~ 
 
-# Install xcode
+# Install xcode & brew
 xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+reset
 
 # Console & zsh & iterm config
 brew install tree
@@ -12,26 +14,17 @@ brew install fzf
 brew install ack
 brew install bash-completion
 brew install ncdu
-
-echo "✅ Installing zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 bash <(curl -s https://raw.githubusercontent.com/ARXChrono/mac-setup/master/configs/zsh.sh) 
-
-echo "✅ Installing iterm2"
 brew install --cask iterm2
-# configure iterm fonts, will need to open iterm2 and add my custom colors for now.
-brew tap caskroom/fonts && brew install --cask font-source-code-pro && brew install --cask font-ibm-plex 
+brew tap homebrew/cask-fonts && brew install --cask font-source-code-pro && brew install --cask font-ibm-plex 
 
 # Dev 
-echo "✅ Installing git, hub, node, nvm, gist, yarn"
 brew install git
-brew install hub
 brew install node
-brew install gist
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
 
 # Install Apps
-echo "✅ Installing apps"
 brew install --cask rectangle
 brew install --cask visual-studio-code
 brew install --cask slack 
@@ -42,10 +35,7 @@ brew install --cask postman
 brew install --cask spotify
 brew install --cask google-chrome
 
-# VSCode todo: export config
-
 ## Theme
-echo "✅ Installing vscode themes and plugins"
 code --install-extension alexanderte.dainty-vscode
 code --install-extension dracula-theme.theme-dracula
 code --install-extension pkief.material-icon-theme
