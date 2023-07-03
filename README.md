@@ -5,7 +5,7 @@
 
 ## 👋 Welcome
 
-The goal is to automate majority of my initial mac setup when getting started on a fresh OS. It's a good start and I'll continue adding more configurations, and anything else i might have left out over time! 
+The goal is to automate majority of my initial mac setup when getting started on a fresh OS. 
 
 ## 🚀 Lets go
 
