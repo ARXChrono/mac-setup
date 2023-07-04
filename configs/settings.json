@@ -1,16 +1,22 @@
 {
-    "workbench.colorTheme": "Dracula",
-    "security.workspace.trust.untrustedFiles": "open",
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.fontFamily": "IBM Plex mono",
-    "editor.fontSize": 14,
-    "workbench.colorCustomizations": {
-      "editor.background": "#111",
-      "editorGutter.background": "#111",
-      "terminal.background": "#111",
-      "activityBar.background": "#000",
-      "activityBar.border": "#222",
-      "sideBar.background": "#0d0d0d"
-    },
-    "explorer.confirmDelete": false,
+  "workbench.colorTheme": "Dracula",
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "IBM Plex mono",
+  "editor.fontSize": 14,
+  "workbench.colorCustomizations": {
+    "editor.background": "#111",
+    "editorGutter.background": "#111",
+    "terminal.background": "#111",
+    "activityBar.background": "#000",
+    "activityBar.border": "#222",
+    "sideBar.background": "#0d0d0d"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "explorer.confirmDelete": false,
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true
 }
