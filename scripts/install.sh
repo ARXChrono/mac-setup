@@ -22,7 +22,7 @@ brew tap homebrew/cask-fonts && brew install --cask font-source-code-pro && brew
 # Dev 
 brew install git
 brew install node
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.1/install.sh | bash
+curl -fsSL https://fnm.vercel.app/install | bash
 
 # Install Apps
 brew install --cask rectangle
