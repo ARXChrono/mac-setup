@@ -7,26 +7,59 @@ cd ~
 read -p "Enter your email address: " user_email
 read -p "Enter your GitHub username: " github_user
 
-# Install Xcode Command Line Tools & Homebrew
-xcode-select --install
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Function to check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Install Xcode Command Line Tools if not installed
+if ! xcode-select -p &>/dev/null; then
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install
+else
+  echo "Xcode Command Line Tools already installed."
+fi
+
+# Install Homebrew if not installed
+if ! command_exists brew; then
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Homebrew already installed."
+fi
 
 # Refresh shell to apply changes
 source ~/.bash_profile
 
-# Install utilities & shell tools
-brew install tree fzf ack bash-completion ncdu
+# Install utilities & shell tools if not installed
+for tool in tree fzf ack bash-completion ncdu; do
+  if ! command_exists $tool; then
+    echo "Installing $tool..."
+    brew install $tool
+  else
+    echo "$tool already installed."
+  fi
+done
 
-# Install Oh My Zsh 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install Oh My Zsh if not installed
+if [ ! -d ~/.oh-my-zsh ]; then
+  echo "Installing Oh My Zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+  echo "Oh My Zsh already installed."
+fi
 
-# Install Miniconda
-brew install --cask miniconda
-
-# Initialize Conda
-echo "Initializing Conda..."
-source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda init
+# Install Miniconda if not installed
+if [ ! -d ~/miniconda3 ]; then
+  echo "Installing Miniconda..."
+  brew install --cask miniconda
+  # Initialize Conda
+  echo "Initializing Conda..."
+  source "$HOME/miniconda3/etc/profile.d/conda.sh"
+  conda init
+else
+  echo "Miniconda already installed."
+fi
 
 # Configure zshrc
 echo "🛠 Configuring zshrc"
@@ -51,26 +84,31 @@ echo -e "\033[32m✅ zsh configuration completed"
 # Source the updated .zshrc to apply changes
 source ${ZDOTDIR:-$HOME}/.zshrc
 
-# Install iTerm2
-brew install --cask iterm2
+# Install iTerm2 if not installed
+if ! command_exists iterm2; then
+  echo "Installing iTerm2..."
+  brew install --cask iterm2
+else
+  echo "iTerm2 already installed."
+fi
 
-# Install development tools
-curl -fsSL https://fnm.vercel.app/install | bash
+# Install development tools if not installed
+for tool in rectangle visual-studio-code notion figma postman spotify google-chrome; do
+  if ! brew list --cask $tool &>/dev/null; then
+    echo "Installing $tool..."
+    brew install --cask $tool
+  else
+    echo "$tool already installed."
+  fi
+done
 
-# Load fnm immediately into the shell
-export PATH="$HOME/.fnm:$PATH"
-eval "$(fnm env)"
-
-# Install latest Node.js & set as default
-fnm install --latest
-fnm use --latest
-fnm default $(fnm current)
-
-# Install essential apps
-brew install --cask rectangle visual-studio-code notion figma postman spotify google-chrome
-
-# Install Docker
-brew install --cask docker
+# Install Docker if not installed
+if ! command_exists docker; then
+  echo "Installing Docker..."
+  brew install --cask docker
+else
+  echo "Docker already installed."
+fi
 
 # Install VS Code extensions
 extensions=(
@@ -78,22 +116,30 @@ extensions=(
   eamodio.gitlens
   esbenp.prettier-vscode
   CoenraadS.bracket-pair-colorizer
-  # Install VS Code themes
   alexanderte.dainty-vscode
   dracula-theme.theme-dracula
 )
 
 for ext in "${extensions[@]}"; do
-  code --install-extension "$ext"
+  if ! code --list-extensions | grep -q "$ext"; then
+    echo "Installing VS Code extension: $ext"
+    code --install-extension "$ext"
+  else
+    echo "VS Code extension $ext already installed."
+  fi
 done
 
 # Prompt user for GitHub SSH setup
 read -p "Do you want to set up GitHub SSH keys? (y/n): " setup_ssh
 if [[ $setup_ssh =~ ^[Yy]$ ]]; then
-  ssh-keygen -t ed25519 -C "$user_email"
-  eval "$(ssh-agent -s)"
-  pbcopy < ~/.ssh/id_ed25519.pub
-  echo "SSH key copied to clipboard. Add it to your GitHub account at https://github.com/settings/keys"
+  if [ ! -f ~/.ssh/id_ed25519 ]; then
+    ssh-keygen -t ed25519 -C "$user_email"
+    eval "$(ssh-agent -s)"
+    pbcopy < ~/.ssh/id_ed25519.pub
+    echo "SSH key copied to clipboard. Add it to your GitHub account at https://github.com/settings/keys"
+  else
+    echo "SSH key already exists."
+  fi
   git config --global user.name "$github_user"
   git config --global user.email "$user_email"
 fi
