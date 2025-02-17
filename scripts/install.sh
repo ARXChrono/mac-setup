@@ -12,7 +12,7 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Refresh shell to apply changes
-exec "$SHELL"
+source ~/.bash_profile
 
 # Install utilities & shell tools
 brew install tree fzf ack bash-completion ncdu
@@ -48,7 +48,8 @@ echo 'conda init' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo -e "\033[32m✅ zsh configuration completed"
 
-reset
+# Source the updated .zshrc to apply changes
+source ${ZDOTDIR:-$HOME}/.zshrc
 
 # Install iTerm2
 brew install --cask iterm2
