@@ -4,7 +4,7 @@
 cd ~ 
 
 # Prompt user for email and GitHub username
-read -p "Enter your email address: " user_email
+read -p "Enter your Github email address: " user_email
 read -p "Enter your GitHub username: " github_user
 
 # Function to check if a command exists
