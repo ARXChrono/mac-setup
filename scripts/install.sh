@@ -3,10 +3,6 @@
 # 🏠 Home sweet home
 cd ~ 
 
-# Prompt user for email and GitHub username
-read -p "Enter your Github email address: " user_email
-read -p "Enter your GitHub username: " github_user
-
 # Function to check if a command exists
 command_exists() {
   command -v "$1" >/dev/null 2>&1
@@ -75,6 +71,13 @@ echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias freeport="f() { lsof -ti :$1 | xargs kill -9; }; f"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'eval "$(fnm env --use-on-cd)"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
+# Create an empty directory called 'projects' and add an alias to navigate to it
+if [ ! -d ~/projects ]; then
+  echo "Creating 'projects' directory..."
+  mkdir ~/projects
+fi
+echo 'alias pj="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
+
 # Add Conda initialization to .zshrc
 echo 'source "$HOME/miniconda3/etc/profile.d/conda.sh"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'conda init' >> ${ZDOTDIR:-$HOME}/.zshrc
@@ -93,7 +96,7 @@ else
 fi
 
 # Install development tools if not installed
-for tool in rectangle visual-studio-code notion figma postman spotify google-chrome; do
+for tool in rectangle visual-studio-code notion figma postman spotify google-chrome maccy; do
   if ! brew list --cask $tool &>/dev/null; then
     echo "Installing $tool..."
     brew install --cask $tool
@@ -130,8 +133,11 @@ for ext in "${extensions[@]}"; do
 done
 
 # Prompt user for GitHub SSH setup
-read -p "Do you want to set up GitHub SSH keys? (y/n): " setup_ssh
+echo "Would you like to set up GitHub SSH keys? (y/n)"
+read -p "" setup_ssh
 if [[ $setup_ssh =~ ^[Yy]$ ]]; then
+  read -p "Enter your email address: " user_email
+  read -p "Enter your GitHub username: " github_user
   if [ ! -f ~/.ssh/id_ed25519 ]; then
     ssh-keygen -t ed25519 -C "$user_email"
     eval "$(ssh-agent -s)"
