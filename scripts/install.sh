@@ -24,16 +24,38 @@ else
   echo "Homebrew already installed."
 fi
 
-# Refresh shell to apply changes
-source ~/.bash_profile
+# Refresh shell to apply changes if bash_profile exists
+if [ -f ~/.bash_profile ]; then
+    source ~/.bash_profile
+fi
 
-# Install utilities & shell tools if not installed
+# Install CLI development tools
 for tool in tree fzf ack bash-completion ncdu; do
   if ! command_exists $tool; then
     echo "Installing $tool..."
     brew install $tool
   else
     echo "$tool already installed."
+  fi
+done
+
+# Install GUI applications
+for app in iterm2 rectangle visual-studio-code notion figma postman spotify google-chrome maccy; do
+  if ! brew list --cask $app &>/dev/null; then
+    echo "Installing $app..."
+    brew install --cask $app
+  else
+    echo "$app already installed."
+  fi
+done
+
+# Install development tools
+for devtool in docker; do
+  if ! brew list --cask $devtool &>/dev/null; then
+    echo "Installing $devtool..."
+    brew install --cask $devtool
+  else
+    echo "$devtool already installed."
   fi
 done
 
@@ -68,17 +90,63 @@ fi
 # Configure zshrc
 echo "🛠 Configuring zshrc"
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-echo "source ${(q-)PWD}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+# Backup existing zshrc
+if [ -f "${ZDOTDIR:-$HOME}/.zshrc" ]; then
+    echo "Creating backup of existing .zshrc..."
+    cp "${ZDOTDIR:-$HOME}/.zshrc" "${ZDOTDIR:-$HOME}/.zshrc.backup"
+fi
 
-git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
-echo "source ${(q-)PWD}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+# Define installation directories
+ZSH_DIR="$HOME/.zsh"
+SYNTAX_HIGHLIGHTING_DIR="$ZSH_DIR/zsh-syntax-highlighting"
+AUTOSUGGESTIONS_DIR="$ZSH_DIR/zsh-autosuggestions"
 
+# Ensure Homebrew is in PATH
+if [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ${ZDOTDIR:-$HOME}/.zshrc
+fi
+
+# Clone zsh-syntax-highlighting if it doesn't exist
+if [ ! -d "$SYNTAX_HIGHLIGHTING_DIR" ]; then
+    echo "Cloning zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$SYNTAX_HIGHLIGHTING_DIR"
+    if [ $? -ne 0 ]; then
+        echo "Failed to clone zsh-syntax-highlighting. Exiting."
+        exit 1
+    fi
+    echo "source $SYNTAX_HIGHLIGHTING_DIR/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+else
+    echo "zsh-syntax-highlighting already exists. Skipping clone."
+fi
+
+# Clone zsh-autosuggestions if it doesn't exist
+if [ ! -d "$AUTOSUGGESTIONS_DIR" ]; then
+    echo "Cloning zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$AUTOSUGGESTIONS_DIR"
+    if [ $? -ne 0 ]; then
+        echo "Failed to clone zsh-autosuggestions. Exiting."
+        exit 1
+    fi
+    echo "source $AUTOSUGGESTIONS_DIR/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+else
+    echo "zsh-autosuggestions already exists. Skipping clone."
+fi
+
+# Add zshrc configurations
+echo 'Adding zsh configurations...'
+
+# Editor and reload aliases
 echo 'alias zshc="code ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias reload="source ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
+# Git aliases
 echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
+
+# System utilities
 echo 'alias cl="clear"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias pj="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
+
+# Network utilities
 echo 'alias netinfo="echo \"IP Addresses:\" && ifconfig | awk \047/inet / && !/127.0.0.1/ {print \$2}\047 && echo \"Default Gateway:\" && route -n get default | awk \047/gateway/ {print \$2}\047"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias ports="netstat -anp tcp | grep LISTEN"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias freeport="f() { lsof -ti :$1 | xargs kill -9; }; f"' >> ${ZDOTDIR:-$HOME}/.zshrc
@@ -129,23 +197,29 @@ else
 fi
 
 # Install VS Code extensions
-extensions=(
-  sourcegraph.cody-ai
-  eamodio.gitlens
-  esbenp.prettier-vscode
-  CoenraadS.bracket-pair-colorizer
-  alexanderte.dainty-vscode
-  dracula-theme.theme-dracula
-)
+if command_exists code; then
+    extensions=(
+      sourcegraph.cody-ai
+      eamodio.gitlens
+      esbenp.prettier-vscode
+      CoenraadS.bracket-pair-colorizer
+      alexanderte.dainty-vscode
+      dracula-theme.theme-dracula
+    )
 
-for ext in "${extensions[@]}"; do
-  if ! code --list-extensions | grep -q "$ext"; then
-    echo "Installing VS Code extension: $ext"
-    code --install-extension "$ext"
-  else
-    echo "VS Code extension $ext already installed."
-  fi
-done
+    for ext in "${extensions[@]}"; do
+      if ! code --list-extensions | grep -q "$ext"; then
+        echo "Installing VS Code extension: $ext"
+        if ! code --install-extension "$ext"; then
+          echo "⚠️  Failed to install extension: $ext"
+        fi
+      else
+        echo "VS Code extension $ext already installed."
+      fi
+    done
+else
+    echo "⚠️  VS Code not found in PATH. Skipping extension installation."
+fi
 
 # Prompt user for GitHub SSH setup
 echo "Would you like to set up GitHub SSH keys? (y/n)"
