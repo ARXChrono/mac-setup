@@ -79,8 +79,8 @@ echo 'alias reload="source ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias cl="clear"' >> ${ZDOTDIR:-$HOME}/.zshrc
-echo 'alias netinfo="echo \"IP Addresses:\" && ifconfig | awk \"/inet / && !/127.0.0.1/ {print \\\$2}\" && echo \"Default Gateway:\" && route -n get default | awk \"/gateway/ {print \\\$2}\""' >> ${ZDOTDIR:-$HOME}/.zshrc
-echo 'alias ports="lsof -i -P | grep LISTEN"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias netinfo="echo \"IP Addresses:\" && ifconfig | awk \047/inet / && !/127.0.0.1/ {print \$2}\047 && echo \"Default Gateway:\" && route -n get default | awk \047/gateway/ {print \$2}\047"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias ports="netstat -anp tcp | grep LISTEN"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias freeport="f() { lsof -ti :$1 | xargs kill -9; }; f"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # Add fnm initialization to.zshrc
