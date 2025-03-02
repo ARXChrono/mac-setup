@@ -1,26 +1,26 @@
 #!/bin/bash
 
-# URL of the color theme file
-COLOR_THEME_URL="https://raw.githubusercontent.com/ARXChrono/mac-setup/refs/heads/master/configs/shauns.itermcolors"
-COLOR_THEME_FILE="shauns.itermcolors"
+echo "Downloading iTerm2 color schemes..."
 
-# Download the color theme file
-echo "Downloading color theme from $COLOR_THEME_URL..."
-curl -fsSL "$COLOR_THEME_URL" -o "$COLOR_THEME_FILE"
+# Create hidden themes directory if it doesn't exist
+THEMES_DIR="$HOME/.iterm-themes"
+mkdir -p "$THEMES_DIR"
 
-# Check if the download was successful
-if [ ! -f "$COLOR_THEME_FILE" ]; then
-  echo "Failed to download the color theme file."
-  exit 1
-fi
+# Download custom Shaun's theme
+SHAUNS_THEME_URL="https://raw.githubusercontent.com/ARXChrono/mac-setup/refs/heads/master/configs/shauns.itermcolors"
+curl -fsSL "$SHAUNS_THEME_URL" -o "$THEMES_DIR/shauns.itermcolors"
 
-# Apply the color theme to iTerm2
-echo "Applying color theme to iTerm2..."
-open "$COLOR_THEME_FILE"
+# Download Dracula theme
+DRACULA_THEME_URL="https://raw.githubusercontent.com/dracula/iterm/master/Dracula.itermcolors"
+curl -fsSL "$DRACULA_THEME_URL" -o "$THEMES_DIR/Dracula.itermcolors"
 
-# Restart iTerm2 to apply the changes
-echo "Restarting iTerm2 to apply the changes..."
-osascript -e 'quit app "iTerm"'
-open -a iTerm
+# Download Catppuccin theme
+CATPPUCCIN_THEME_URL="https://raw.githubusercontent.com/catppuccin/iterm/main/colors/catppuccin-mocha.itermcolors"
+curl -fsSL "$CATPPUCCIN_THEME_URL" -o "$THEMES_DIR/Catppuccin-Mocha.itermcolors"
 
-echo "Color theme applied successfully."
+echo "✅ Color schemes downloaded to $THEMES_DIR"
+echo "To apply the themes:"
+echo "1. Open iTerm2 Preferences (⌘,)"
+echo "2. Go to Profiles > Colors"
+echo "3. Click on 'Color Presets...' > Import"
+echo "4. Select the .itermcolors files from $THEMES_DIR"

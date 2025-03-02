@@ -57,6 +57,14 @@ else
   echo "Miniconda already installed."
 fi
 
+# Install fnm if not installed
+if ! command_exists fnm; then
+  echo "Installing fnm..."
+  curl -fsSL https://fnm.vercel.app/install | bash
+else
+  echo "fnm already installed."
+fi
+
 # Configure zshrc
 echo "🛠 Configuring zshrc"
 
@@ -69,14 +77,14 @@ echo "source ${(q-)PWD}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${Z
 echo 'alias zshconfig="code ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias freeport="f() { lsof -ti :$1 | xargs kill -9; }; f"' >> ${ZDOTDIR:-$HOME}/.zshrc
-echo 'eval "$(fnm env --use-on-cd)"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'eval "$(fnm env --use-on-cd)"' >> ${ZDOTDIR:-$HOME}/.zshrc 
 
 # Create an empty directory called 'projects' and add an alias to navigate to it
 if [ ! -d ~/projects ]; then
   echo "Creating 'projects' directory..."
   mkdir ~/projects
 fi
-echo 'alias pj="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias p="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # Add Conda initialization to .zshrc
 echo 'source "$HOME/miniconda3/etc/profile.d/conda.sh"' >> ${ZDOTDIR:-$HOME}/.zshrc
