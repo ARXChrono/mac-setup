@@ -74,17 +74,24 @@ echo "source ${(q-)PWD}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
 echo "source ${(q-)PWD}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
-echo 'alias zshconfig="code ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias zshc="code ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias reload="source ~/.zshrc"' >> ${ZDOTDIR:-$HOME}/.zshrc
+
 echo "alias gs='git status -sb'" >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias cl="clear"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias netinfo="echo \"IP Addresses:\" && ifconfig | awk \"/inet / && !/127.0.0.1/ {print \\\$2}\" && echo \"Default Gateway:\" && route -n get default | awk \"/gateway/ {print \\\$2}\""' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias ports="lsof -i -P | grep LISTEN"' >> ${ZDOTDIR:-$HOME}/.zshrc
 echo 'alias freeport="f() { lsof -ti :$1 | xargs kill -9; }; f"' >> ${ZDOTDIR:-$HOME}/.zshrc
-echo 'eval "$(fnm env --use-on-cd)"' >> ${ZDOTDIR:-$HOME}/.zshrc 
+
+# Add fnm initialization to.zshrc
+echo 'eval "$(fnm env --use-on-cd)"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # Create an empty directory called 'projects' and add an alias to navigate to it
 if [ ! -d ~/projects ]; then
   echo "Creating 'projects' directory..."
   mkdir ~/projects
 fi
-echo 'alias p="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
+echo 'alias pj="cd ~/projects"' >> ${ZDOTDIR:-$HOME}/.zshrc
 
 # Add Conda initialization to .zshrc
 echo 'source "$HOME/miniconda3/etc/profile.d/conda.sh"' >> ${ZDOTDIR:-$HOME}/.zshrc
