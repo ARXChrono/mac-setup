@@ -1,17 +1,16 @@
 {
-  "workbench.colorTheme": "Dracula",
-  "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "IBM Plex Mono",
   "editor.fontSize": 14,
-  "workbench.colorCustomizations": {
-    "editor.background": "#111",
-    "editorGutter.background": "#111",
-    "terminal.background": "#111",
-    "activityBar.background": "#000",
-    "activityBar.border": "#222",
-    "sideBar.background": "#0d0d0d"
-  },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "files.insertFinalNewline": true
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs":"active",
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "files.insertFinalNewline": true,
+  "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Dracula Theme",
 }

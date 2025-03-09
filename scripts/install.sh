@@ -202,7 +202,7 @@ if command_exists code; then
       sourcegraph.cody-ai
       eamodio.gitlens
       esbenp.prettier-vscode
-      CoenraadS.bracket-pair-colorizer
+      bradlc.vscode-tailwindcss
       alexanderte.dainty-vscode
       dracula-theme.theme-dracula
     )
