@@ -200,10 +200,11 @@ fi
 if command_exists code; then
     extensions=(
       sourcegraph.cody-ai
-      eamodio.gitlens
       esbenp.prettier-vscode
       bradlc.vscode-tailwindcss
-      alexanderte.dainty-vscode
+      oderwat.indent-rainbow
+      bierner.color-info
+      atomiks.moonlight
       dracula-theme.theme-dracula
     )
 
